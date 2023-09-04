@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Meeting Scheduler</title>
+</head>
+<body>
+<header>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="user-avatar">
+                    <img src="/images/people.png" alt="User Avatar" class="img-fluid rounded-circle">
+                    <span>Humaid</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container mt-5">
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="meeting-list">
+                <h2>Upcoming Meetings</h2>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Initiate Date</th>
+                        <th>Meeting Date/Time</th>
+                        <th>Agenda</th>
+                        <th>Type</th>
+                        <th>Link</th>
+                        <th>Letter No.</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr th:each="meeting : ${meetingSchedule}">
+                        <td th:text="${meeting.id}"></td>
+                        <td th:text="${meeting.initiateDate}"></td>
+                        <td th:text="${meeting.meetingDateTime}"></td>
+                        <td th:text="${meeting.agenda}"></td>
+                        <td th:text="${meeting.type}"></td>
+                        <td th:text="${meeting.link}"></td>
+                        <td th:text="${meeting.letterNo}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="new-meeting">
+                <a th:href="@{/create-meeting}" class="btn btn-primary btn-block">Create New Meeting</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Link to Bootstrap JS and jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

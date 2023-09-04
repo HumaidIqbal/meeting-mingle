@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Meeting</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h2>Create Meeting</h2>
+  <form action="/meetings/create" method="POST" th:object="${meeting}">
+    <div class="form-group">
+      <label for="initiateDate">Initiate Date</label>
+      <input type="text" id="initiateDate" name="initiateDate" th:field="*{initiateDate}" required>
+    </div>
+    <div class="form-group">
+      <label for="meetingDateTime">Meeting Date/Time</label>
+      <input type="text" id="meetingDateTime" name="meetingDateTime" th:field="*{meetingDateTime}" required>
+    </div>
+    <div class="form-group">
+      <label for="agenda">Agenda</label>
+      <input type="text" id="agenda" name="agenda" th:field="*{agenda}" required>
+    </div>
+    <div class="form-group">
+      <label for="type">Type</label>
+      <input type="text" id="type" name="type" th:field="*{type}" required>
+    </div>
+    <div class="form-group">
+      <label for="link">Link</label>
+      <input type="text" id="link" name="link" th:field="*{link}" required>
+    </div>
+    <div class="form-group">
+      <label for="letterNo">Letter No.</label>
+      <input type="text" id="letterNo" name="letterNo" th:field="*{letterNo}" required>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+
+</div>
+</body>
+</html>
