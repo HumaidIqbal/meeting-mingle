@@ -25,43 +25,46 @@
 <main class="container mt-5">
 
     <div class="row">
-        <div class="col-md-9">
-            <div class="meeting-list">
-                <h2>Upcoming Meetings</h2>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Initiate Date</th>
-                        <th>Meeting Date/Time</th>
-                        <th>Agenda</th>
-                        <th>Type</th>
-                        <th>Link</th>
-                        <th>Letter No.</th>
-                    </tr>
-
-                    </thead>
-                    <tbody>
-                    <tr th:each="meeting : ${meetingSchedule}">
-                        <td th:text="${meeting.id}"></td>
-                        <td th:text="${meeting.initiateDate}"></td>
-                        <td th:text="${meeting.meetingDateTime}"></td>
-                        <td th:text="${meeting.agenda}"></td>
-                        <td th:text="${meeting.type}"></td>
-                        <td th:text="${meeting.link}"></td>
-                        <td th:text="${meeting.letterNo}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-md-3 ">
+        <div class="col-md-3">
             <div class="new-meeting">
                 <a th:href="@{/create-meeting}" class="btn btn-primary btn-block">Create New Meeting</a>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="meeting-list">
+                <h2>Upcoming Meetings</h2>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Agenda</th>
+                        <th>Location</th>
+                        <th>Meeting Date/Time</th>
+                        <th>Initiator</th>
+                        <th>Designation</th>
+                        <th>Participants</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr th:each="meeting : ${meetingSchedule}">
+
+                        <td th:text="${meeting.agenda}"></td>
+                        <td th:text="${meeting.address}"></td>
+                        <td th:text="${meeting.meetingDateTime}"></td>
+                        <td th:text="${meeting.initiatorName}"></td>
+                        <td th:text="${meeting.designation}"></td>
+                        <td th:text="${meeting.participantNames}"></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </main>
+
 
 <!-- Link to Bootstrap JS and jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

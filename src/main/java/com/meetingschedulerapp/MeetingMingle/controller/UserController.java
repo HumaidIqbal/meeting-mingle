@@ -1,5 +1,7 @@
 package com.meetingschedulerapp.MeetingMingle.controller;
 
+import com.meetingschedulerapp.MeetingMingle.pages.model.MeetingDetails;
+import com.meetingschedulerapp.MeetingMingle.pages.translate.PageMapper;
 import com.meetingschedulerapp.MeetingMingle.repository.DAO;
 import com.meetingschedulerapp.MeetingMingle.repository.entity.MeetingSchedule;
 import org.slf4j.Logger;
@@ -21,12 +23,15 @@ public class UserController {
     @Autowired
     DAO dao;
 
+    @Autowired
+    PageMapper mapper;
+
 
     @GetMapping("/home")
     public String homePage(Model model){
-        List<MeetingSchedule> meetingSchedule = dao.getAllMeetingSchedule();
-        logger.info("MEETING SCHEDULE: "+ meetingSchedule.toString());
-    model.addAttribute("meetingSchedule", meetingSchedule);
+        List<MeetingDetails> meetingDetails = mapper.getAllMeeting();
+        logger.info("MEETING SCHEDULE: "+ meetingDetails.toString());
+    model.addAttribute("meetingSchedule", meetingDetails);
     return "index";
 
 }
@@ -34,6 +39,9 @@ public class UserController {
 @GetMapping("create-meeting")
 public String goToCreateMeeting(Model model){
     model.addAttribute("meeting", new MeetingSchedule());
+    model.addAttribute("locations", dao.getAllLocation());
+    model.addAttribute("initiators", dao.getAllInitiatior());
+    model.addAttribute("participants", dao.getAllParticipants());
         return "/create";
 }
 

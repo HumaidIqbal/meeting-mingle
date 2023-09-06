@@ -50,6 +50,10 @@ main {
     margin-bottom: 5px;
 }
 
+.meeting {
+    margin-bottom: 30px;
+}
+
 .new-meeting button {
     background-color: #007bff;
     color: white;
@@ -62,3 +66,4 @@ main {
 .new-meeting button:hover {
     background-color: #0056b3;
 }
+

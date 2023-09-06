@@ -1,12 +1,11 @@
 package com.meetingschedulerapp.MeetingMingle.repository.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +21,17 @@ public class MeetingSchedule {
     private String type;
     private String link;
     private String letterNo;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "initiator_id")
+    private Initiator initiator;
+
+    @ManyToMany
+    @JoinColumn(name = "participant_id")
+    private List<Participants> participant;
+
 }

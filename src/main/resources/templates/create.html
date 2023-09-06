@@ -20,31 +20,42 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+    /* Your existing CSS styles... */
 
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+    /* CSS styles for individual form fields */
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
 
-        button[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    .form-group input[type="text"],
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group input[type="date"],
+    .form-group input[type="datetime-local"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Apply additional styles as needed */
+
+    button[type="submit"] {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     </style>
 </head>
 <body>
@@ -53,11 +64,11 @@
   <form action="/meetings/create" method="POST" th:object="${meeting}">
     <div class="form-group">
       <label for="initiateDate">Initiate Date</label>
-      <input type="text" id="initiateDate" name="initiateDate" th:field="*{initiateDate}" required>
+      <input type="date" id="initiateDate" name="initiateDate" th:field="*{initiateDate}" required>
     </div>
     <div class="form-group">
       <label for="meetingDateTime">Meeting Date/Time</label>
-      <input type="text" id="meetingDateTime" name="meetingDateTime" th:field="*{meetingDateTime}" required>
+      <input type="datetime-local" id="meetingDateTime" name="meetingDateTime" th:field="*{meetingDateTime}" required>
     </div>
     <div class="form-group">
       <label for="agenda">Agenda</label>
@@ -75,8 +86,34 @@
       <label for="letterNo">Letter No.</label>
       <input type="text" id="letterNo" name="letterNo" th:field="*{letterNo}" required>
     </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <select id="location" name="location" th:field="*{location}">
+        <option value="">Select an location</option>
+        <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.room}"></option>
+
+        <!-- Add more location options as needed -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="initiator">Initiator</label>
+      <select id="initiator" name="initiators" th:field="*{initiator}">
+        <option value="">Select an initiator</option>
+        <option th:each="initiator : ${initiators}" th:value="${initiator.id}" th:text="${initiator.name}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="participant">Participant</label>
+      <select id="participant" name="participant" th:field="*{participant}" multiple="multiple">
+        <option value="">Select an participant</option>
+        <option th:each="participant : ${participants}" th:value="${participant.id}" th:text="${participant.name}"></option>
+
+        <!-- Add more participant options as needed -->
+      </select>
+    </div>
     <button type="submit">Create</button>
   </form>
+
 
 </div>
 </body>
